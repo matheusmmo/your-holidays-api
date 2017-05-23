@@ -1,0 +1,26 @@
+{
+  "name": "holidays",
+  "version": "0.0.1",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha --recursive --reporter spec tests/",
+    "dev": "nodemon --debug app/server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "body-parser": "^1.17.1",
+    "cors": "^2.8.3",
+    "express": "^4.15.2",
+    "method-override": "^2.3.8",
+    "mongoose": "^4.9.8",
+    "morgan": "^1.8.1"
+  },
+  "dependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.3.0",
+    "sinon": "^2.2.0",
+    "sinon-mongoose": "^2.0.1"
+  }
+}
