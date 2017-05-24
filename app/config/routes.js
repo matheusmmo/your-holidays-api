@@ -34,4 +34,9 @@ router.post('/holiday', HolidayController.PostHoliday);
 router.delete('/holiday/:id', HolidayController.DeleteHoliday);
 router.put('/holiday/:id', HolidayController.UpdateHoliday);
 
+// Today
+const TodayController = require('../controllers/TodayController');
+
+router.get('/today', TodayController.index);
+
 module.exports = router;
