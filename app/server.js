@@ -15,6 +15,7 @@ app.use(methodOverride());
 
 app.use('/api', routes);
 
+mongoose.Promise = global.Promise;
 mongoose.connect(config.db);
 
 //This callback will be triggered once the connection is successfully established to MongoDB
