@@ -1,5 +1,6 @@
 const AreaFinder = require('../services/AreaFinder');
 const HolidayFinder = require('../services/HolidayFinder');
+const HolidaysInAreasFinder = require('../services/HolidaysInAreasFinder');
 
 class TodayController {
   index(request, response) {
@@ -12,7 +13,7 @@ class TodayController {
       const areaFinder = new AreaFinder();
       areaFinder.latitude = request.query.latitude;
       areaFinder.longitude = request.query.longitude;
-      areaFinder.name = query.description;
+      areaFinder.name = request.query.description;
 
       /**
        * Setting up today's holiday finder.
@@ -25,17 +26,12 @@ class TodayController {
 
       Promise.all([areaFinder.find(), holidayFinder.find()])
         .then((values) => {
-          const areas = values[0];
-          const holidays = values[1];
-          
-          const holidayForArea = areas.map((area) => {
-            return holidays.filter((holiday) => area.equals(holiday.area))
-          });
-          
+          const holidaysInArea = new HolidaysInAreasFinder(values[0], values[1]);
+
           return response.json({
             code: 200,
             message: null,
-            data: holidayForArea,
+            data: holidaysInArea.find(),
           });
         })
       ;
